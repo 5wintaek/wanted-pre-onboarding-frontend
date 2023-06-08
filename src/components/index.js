@@ -1,1 +1,2 @@
-export * from "./AuthForm/AuthForm";
+export * from './FormInput/FormInput';
+export * from './LoginButton/LoginButton';
