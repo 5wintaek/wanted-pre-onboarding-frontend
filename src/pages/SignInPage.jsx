@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { FormInput, LoginButton } from '@/components';
+import { AuthForm } from '@/components/AuthForm/AuthForm';
 
 const initialFormState = {
   email: '',
@@ -15,9 +16,5 @@ export function SignInPage() {
     console.log(name);
   };
 
-  return (
-    <form>
-      <FormInput name="email" type="email" placeholder="Enter your Email" />
-    </form>
-  );
+  return <AuthForm />;
 }
