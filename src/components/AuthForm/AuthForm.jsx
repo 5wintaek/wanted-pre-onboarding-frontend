@@ -51,7 +51,7 @@ export function AuthForm() {
         {...passwordInput}
       />
       <LoginButton type="submit" disabled={!isValid}>
-        로그인
+        제출
       </LoginButton>
     </form>
   );
