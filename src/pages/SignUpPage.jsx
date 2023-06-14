@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { DEV_ADDRESS } from '@/api/api';
 import { useNavigate } from 'react-router-dom';
 import { FormInput, LoginButton } from '@/components';
@@ -9,6 +9,13 @@ export function SignUpPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isRegistered) {
+      console.log('가입완료');
+      navigate('/signin');
+    }
+  }, [isRegistered, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,10 +28,6 @@ export function SignUpPage() {
       setIsRegistered(() => true);
     } catch (error) {
       alert(error.response.data.message);
-    }
-    if (isRegistered) {
-      console.log('완료되었습니다.');
-      navigate('/signin');
     }
   };
 
