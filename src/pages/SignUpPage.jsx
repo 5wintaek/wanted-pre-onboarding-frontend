@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { DEV_ADDRESS } from '@/api/api';
-import { AuthForm } from '@/components/AuthForm/AuthForm';
 import { useNavigate } from 'react-router-dom';
 import { FormInput, LoginButton } from '@/components';
 
@@ -15,7 +14,7 @@ export function SignUpPage() {
     e.preventDefault();
     console.log(DEV_ADDRESS);
     try {
-      const response = await axios.post(`${DEV_ADDRESS}/auth/signup`, {
+      await axios.post(`${DEV_ADDRESS}/auth/signup`, {
         email,
         password,
       });
@@ -24,6 +23,7 @@ export function SignUpPage() {
       alert(error.response.data.message);
     }
     if (isRegistered) {
+      console.log('완료되었습니다.');
       navigate('/signin');
     }
   };
