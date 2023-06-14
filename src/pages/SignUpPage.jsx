@@ -27,6 +27,13 @@ export function SignUpPage() {
     }
   }, [isRegistered, navigate]);
 
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      navigate('/todo');
+    }
+  }, [navigate]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
