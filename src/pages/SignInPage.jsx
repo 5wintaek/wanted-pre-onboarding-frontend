@@ -1,6 +1,15 @@
 import { useInput } from '@/hooks';
 import { FormInput, LoginButton } from '@/components';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
+
+const url = 'http://localhost:8000/';
+const api = axios.create({
+  baseURL: url,
+  Headers: {
+    'Content-Type': 'application/json',
+  },
+});
 
 export function SignInPage() {
   const emailInput = useInput('');
@@ -22,13 +31,20 @@ export function SignInPage() {
     setValid(isValidEmail && isValidPassword);
   }, [emailInput.value, passwordInput.value]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const res = await api.post('/auth/signin', {
+        email: emailInput.value,
+        password: passwordInput.value,
+      });
 
-    if (isValid) {
-      console.log('제출완료');
-    } else {
-      console.log('통과ㄴㄴ');
+      console.log(res);
+      const token = res.data.access_token;
+      localStorage.setItem('token', token);
+      console.log('성공');
+    } catch (error) {
+      console.error('로그인 실패:', error);
     }
   };
 
