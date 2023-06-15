@@ -1,5 +1,5 @@
 import { useTodoState } from '@/context';
-import { TodoItem } from '../TodoItem/TodoItem';
+import { TodoItem, TodoCreate } from '@/components';
 
 export function TodoList() {
   const todos = useTodoState();
@@ -14,6 +14,7 @@ export function TodoList() {
           done={todo.done}
         />
       ))}
+      <TodoCreate />
     </>
   );
 }
