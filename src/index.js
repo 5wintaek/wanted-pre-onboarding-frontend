@@ -3,6 +3,7 @@ import App from '@/apps/App';
 
 import { SignInPage, SignUpPage, NotFoundPage, Todo } from '@/pages';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { TodoProvider } from './context/TodoContext';
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <>
+  <TodoProvider>
     <RouterProvider router={router} />
-  </>
+  </TodoProvider>
 );

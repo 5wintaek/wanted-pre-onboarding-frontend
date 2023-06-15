@@ -1,6 +1,8 @@
+import { useTodoState } from '@/context';
+
 export function TodoForm() {
   return (
-    <>
+    <div>
       <li>
         <label>
           <input type="checkbox" />
@@ -13,6 +15,6 @@ export function TodoForm() {
           <span>TODO 2</span>
         </label>
       </li>
-    </>
+    </div>
   );
 }
