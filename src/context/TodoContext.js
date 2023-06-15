@@ -44,7 +44,7 @@ const TodoNextIdContext = createContext();
 
 export function TodoProvider({ children }) {
   const [state, dispatch] = useReducer(todoReducer, initialTodos);
-  const nextId = useRef(5);
+  const nextId = useRef(4);
 
   return (
     <TodoStateContext.Provider value={state}>
@@ -70,6 +70,7 @@ export function useTodoDispatch() {
   if (!context) {
     throw new Error('Provider를 찾을 수 없습니다.');
   }
+  return context;
 }
 
 export function useTodoNextId() {
@@ -77,4 +78,5 @@ export function useTodoNextId() {
   if (!context) {
     throw new Error('Provider를 찾을 수 없습니다.');
   }
+  return context;
 }

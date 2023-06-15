@@ -1,4 +1,4 @@
-import { TodoForm } from '@/components/TodoForm/TodoForm';
+import { TodoList } from '@/components';
 import { useTodoState } from '@/context';
 
 export function Todo() {
@@ -7,7 +7,7 @@ export function Todo() {
   return (
     <>
       <h2>✏️ Todo List</h2>
-      <TodoForm />
+      <TodoList />
     </>
   );
 }
