@@ -34,8 +34,8 @@ export function SignInPage() {
   }, [emailInput.value, passwordInput.value]);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
+    const getToken = localStorage.getItem('token');
+    if (getToken) {
       navigate('/todo');
     }
   }, [navigate]);
@@ -59,6 +59,7 @@ export function SignInPage() {
 
   return (
     <form onSubmit={handleSubmit}>
+      <h2>🔑 로그인 페이지</h2>
       <label htmlFor="eamil">Email : </label>
       <FormInput
         data-testid="email-input"
