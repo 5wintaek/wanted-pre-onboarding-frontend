@@ -32,10 +32,11 @@ export function TodoCreate() {
           <form onSubmit={onSubmit}>
             <input
               data-testid="new-todo-input"
-              placeholder="할 일 적고 난 후 Enter를 눌러주세요"
+              placeholder="Enter 혹은 버튼 클릭"
               onChange={onChange}
               value={value}
             />
+            <button>생성</button>
           </form>
         </div>
       )}

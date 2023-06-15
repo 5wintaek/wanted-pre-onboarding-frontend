@@ -33,6 +33,10 @@ function todoReducer(state, action) {
       );
     case 'REMOVE':
       return state.filter((todo) => todo.id !== action.id);
+    case 'EDIT':
+      return state.map((todo) =>
+        todo.id === action.id ? { ...todo, todo: action.todo } : todo
+      );
     default:
       throw new Error(`action type : ${action.type}`);
   }
