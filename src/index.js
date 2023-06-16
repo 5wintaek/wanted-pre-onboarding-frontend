@@ -16,9 +16,15 @@ const router = createBrowserRouter([
     element: <App />,
     errorElement: <NotFoundPage />,
     children: [
-      { path: 'signup', element: <SignUpPage /> },
-      { path: 'signin', element: <SignInPage /> },
-      { path: 'todo', element: token ? <Todo /> : <Navigate to="/signin" /> },
+      {
+        path: 'signup',
+        element: token ? <Navigate to="/todo" /> : <SignUpPage />,
+      },
+      {
+        path: 'signin',
+        element: token ? <Navigate to="/todo" /> : <SignInPage />,
+      },
+      { path: 'todo', element: !token ? <Navigate to="/signin" /> : <Todo /> },
     ],
   },
 ]);

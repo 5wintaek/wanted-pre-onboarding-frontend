@@ -33,12 +33,12 @@ export function SignInPage() {
     setValid(isValidEmail && isValidPassword);
   }, [emailInput.value, passwordInput.value]);
 
-  useEffect(() => {
-    const getToken = localStorage.getItem('token');
-    if (getToken) {
-      navigate('/todo');
-    }
-  }, [navigate]);
+  // useEffect(() => {
+  //   const getToken = localStorage.getItem('token');
+  //   if (getToken) {
+  //     navigate('/todo');
+  //   }
+  // }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
