@@ -9,6 +9,7 @@ import {
 import { TodoProvider } from './context/TodoContext';
 
 const token = localStorage.getItem('token');
+console.log(token);
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
         path: 'signin',
         element: token ? <Navigate to="/todo" /> : <SignInPage />,
       },
-      { path: 'todo', element: !token ? <Navigate to="/signin" /> : <Todo /> },
+      { path: 'todo', element: !token ? <SignInPage /> : <Todo /> },
     ],
   },
 ]);

@@ -2,7 +2,7 @@ import { useInput } from '@/hooks';
 import { FormInput, LoginButton } from '@/components';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 
 const url = 'http://localhost:8000/';
 const api = axios.create({
@@ -33,13 +33,6 @@ export function SignInPage() {
     setValid(isValidEmail && isValidPassword);
   }, [emailInput.value, passwordInput.value]);
 
-  // useEffect(() => {
-  //   const getToken = localStorage.getItem('token');
-  //   if (getToken) {
-  //     navigate('/todo');
-  //   }
-  // }, []);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -51,6 +44,7 @@ export function SignInPage() {
       const token = res.data.access_token;
       localStorage.setItem('token', token);
       console.log('성공');
+      window.location.replace('/todo');
       navigate('/todo');
     } catch (error) {
       console.error('로그인 실패:', error);
