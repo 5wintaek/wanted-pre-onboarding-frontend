@@ -1,9 +1,14 @@
 import ReactDOM from 'react-dom/client';
 import App from '@/apps/App';
-
 import { SignInPage, SignUpPage, NotFoundPage, Todo } from '@/pages';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import {
+  RouterProvider,
+  createBrowserRouter,
+  Navigate,
+} from 'react-router-dom';
 import { TodoProvider } from './context/TodoContext';
+
+const token = localStorage.getItem('token');
 
 const router = createBrowserRouter([
   {
@@ -13,7 +18,7 @@ const router = createBrowserRouter([
     children: [
       { path: 'signup', element: <SignUpPage /> },
       { path: 'signin', element: <SignInPage /> },
-      { path: 'todo', element: <Todo /> },
+      { path: 'todo', element: token ? <Todo /> : <Navigate to="/signin" /> },
     ],
   },
 ]);
