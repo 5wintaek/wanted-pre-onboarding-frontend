@@ -2,7 +2,7 @@ import { useInput } from '@/hooks';
 import { FormInput, LoginButton } from '@/components';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate, Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const url = 'http://localhost:8000/';
 const api = axios.create({

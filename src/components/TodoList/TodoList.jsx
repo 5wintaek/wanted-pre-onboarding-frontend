@@ -11,7 +11,7 @@ export function TodoList() {
           key={todo.id}
           id={todo.id}
           todo={todo.todo}
-          done={todo.done}
+          isCompleted={todo.isCompleted}
         />
       ))}
       <TodoCreate />

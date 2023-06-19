@@ -4,21 +4,21 @@ const initialTodos = [
   {
     id: 1,
     todo: '과제하기',
-    done: false,
+    isCompleted: false,
     userId: 1,
   },
 
   {
     id: 2,
     todo: '컴포넌트 분리해보기',
-    done: false,
+    isCompleted: false,
     userId: 2,
   },
 
   {
     id: 3,
     todo: 'Todo list 만들어보기',
-    done: false,
+    isCompleted: false,
     userId: 3,
   },
 ];
