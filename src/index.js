@@ -23,7 +23,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'signin',
-        element: token ? <Navigate to="/todo" /> : <SignInPage />,
+        element: <SignInPage />,
       },
       { path: 'todo', element: !token ? <SignInPage /> : <Todo /> },
     ],

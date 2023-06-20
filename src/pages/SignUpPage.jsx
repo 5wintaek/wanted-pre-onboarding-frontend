@@ -24,6 +24,8 @@ export function SignUpPage() {
     if (isRegistered) {
       console.log('가입완료');
       navigate('/signin');
+    } else {
+      return;
     }
   }, [isRegistered, navigate]);
 
@@ -34,6 +36,24 @@ export function SignUpPage() {
     }
   }, [navigate]);
 
+  const url = 'http://localhost:8000/';
+  const api = axios.create({
+    baseURL: url,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  // const getAuth = async () => {
+  //   try {
+  //     const response = await api.get('/auth/signup');
+  //     const authData = response.authData;
+  //     console.log(authData);
+  //   } catch (error) {
+  //     console.log(console.error());
+  //   }
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -41,13 +61,13 @@ export function SignUpPage() {
       alert('이메일 혹은 비밀번호를 올바르게 입력해주세요');
       return;
     }
-
     console.log(DEV_ADDRESS);
     try {
-      await axios.post(`${DEV_ADDRESS}/auth/signup`, {
-        email,
-        password,
+      const response = await api.post('/auth/signup', {
+        email: email,
+        password: password,
       });
+      console.log(response);
       setIsRegistered(() => true);
     } catch (error) {
       alert(error.response.data.message);

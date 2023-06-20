@@ -45,7 +45,7 @@ export function SignInPage() {
       localStorage.setItem('token', token);
       console.log('성공');
       window.location.replace('/todo');
-      navigate('/todo');
+      navigate(0);
     } catch (error) {
       console.error('로그인 실패:', error);
     }
