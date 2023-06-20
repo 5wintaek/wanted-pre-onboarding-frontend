@@ -9,7 +9,6 @@ import {
 import { TodoProvider } from './context/TodoContext';
 
 const token = localStorage.getItem('token');
-console.log(token);
 
 const router = createBrowserRouter([
   {
@@ -23,15 +22,15 @@ const router = createBrowserRouter([
       },
       {
         path: 'signin',
-        element: <SignInPage />,
+        element: token ? <Navigate to="/todo" /> : <SignInPage />,
       },
-      { path: 'todo', element: !token ? <SignInPage /> : <Todo /> },
+      { path: 'todo', element: token ? <Todo /> : <Navigate to="/signin" /> },
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <TodoProvider>
-    <RouterProvider router={router} />
+    <RouterProvider router={router} token={token} />
   </TodoProvider>
 );
