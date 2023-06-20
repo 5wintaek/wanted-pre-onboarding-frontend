@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useTodoDispatch } from '@/context';
 import styled from 'styled-components';
 import axios from 'axios';
 
@@ -22,93 +21,140 @@ const api = axios.create({
   },
 });
 
-export const TodoItem = React.memo(({ todo }) => {
-  // const dispatch = useTodoDispatch();
-  const [isEditing, setEditing] = useState(false);
-  const [editValue, setEditValue] = useState(todo.todo);
+export const TodoItem = React.memo(
+  ({
+    todo,
+    onRemove,
+    onToggle,
+    isEditing,
+    setEditing,
+    onCancelEdit,
+    onSaveEdit,
+    pickedIndex,
+    setPickedIndex,
+    index,
+  }) => {
+    const [editValue, setEditValue] = useState(todo.todo);
 
-  useEffect(() => {
-    console.log(todo, 'todo');
-  });
+    useEffect(() => {
+      // console.log(todo, 'todo');
+    });
 
-  // // toggle 버튼으로 할일 체크박스
-  // const onToggle = async () => {
-  //   try {
-  //     let response = await api.put(`/todos/${id}`, {
-  //       isCompleted: !isCompleted,
-  //       todo: todo,
-  //     });
-  //     // 서버 응답받아 추가처리
-  //     console.log(response.data);
-  //     dispatch({ type: 'TOGGLE', id });
-  //   } catch (error) {
-  //     console.log(console.error(error));
-  //   }
-  // };
+    // // toggle 버튼으로 할일 체크박스
+    // const onToggle = async () => {
+    //   try {
+    //     let response = await api.put(`/todos/${id}`, {
+    //       isCompleted: !isCompleted,
+    //       todo: todo,
+    //     });
+    //     // 서버 응답받아 추가처리
+    //     console.log(response.data);
+    //     dispatch({ type: 'TOGGLE', id });
+    //   } catch (error) {
+    //     console.log(console.error(error));
+    //   }
+    // };
 
-  // const onRemove = async () => {
-  //   try {
-  //     const response = await api.delete(`/todos/${id}`);
-  //     console.log(response);
-  //     dispatch({ type: 'REMOVE', id });
-  //   } catch (error) {
-  //     console.log(console.error());
-  //   }
-  // };
+    // const onEdit = () => {
+    //   setEditing(true);
+    // };
 
-  // const onEdit = () => {
-  //   setEditing(true);
-  // };
+    // useEffect(() => {
+    //   const fetchTodos = async () => {
+    //     try {
+    //       const response = await api.get('/todos');
+    //       const todosData = response.data;
+    //       dispatch({ type: 'EDIT', todos: todosData });
+    //       console.log(todosData);
+    //     } catch (error) {
+    //       console.log(error);
+    //     }
+    //   };
+    //   fetchTodos();
+    // }, [dispatch]);
 
-  // const onCancelEdit = () => {
-  //   setEditValue(todo);
-  //   setEditing(false);
-  // };
+    // const onSaveEdit = async () => {
+    //   try {
+    //     const response = await api.put(`/todos/${id}`, {
+    //       todo: editValue,
+    //       isCompleted,
+    //     });
+    //     console.log(response.data);
+    //     // id 까지 전달해야지만 할일이 업데이트가 되고 화면에 렌더링이 된다.
+    //     dispatch({ type: 'EDIT', todo: editValue, id });
+    //     setEditing(false);
+    //   } catch (error) {
+    //     console.log(console.error());
+    //   }
+    // };
 
-  // useEffect(() => {
-  //   const fetchTodos = async () => {
-  //     try {
-  //       const response = await api.get('/todos');
-  //       const todosData = response.data;
-  //       dispatch({ type: 'EDIT', todos: todosData });
-  //       console.log(todosData);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   fetchTodos();
-  // }, [dispatch]);
+    const onChangeEdit = (e) => {
+      setEditValue(e.target.value);
+      console.log('onChangeEdit');
+    };
 
-  // const onSaveEdit = async () => {
-  //   try {
-  //     const response = await api.put(`/todos/${id}`, {
-  //       todo: editValue,
-  //       isCompleted,
-  //     });
-  //     console.log(response.data);
-  //     // id 까지 전달해야지만 할일이 업데이트가 되고 화면에 렌더링이 된다.
-  //     dispatch({ type: 'EDIT', todo: editValue, id });
-  //     setEditing(false);
-  //   } catch (error) {
-  //     console.log(console.error());
-  //   }
-  // };
+    useEffect(() => {
+      console.log(editValue);
+    });
 
-  const onChangeEdit = (e) => {
-    setEditValue(e.target.value);
-  };
-
-  return (
-    <ListStyle>
-      <label>
-        <CheckBox type="checkbox" />
-        <input
-          value={editValue}
-          onChange={(e) => onChangeEdit(e)}
-          type="text"
+    return (
+      <ListStyle>
+        {/* <label> */}
+        <CheckBox
+          onChange={() => {
+            onToggle(todo);
+          }}
+          type="checkbox"
+          checked={todo.isCompleted} // value 와 같이 명시해줌
         />
-        <button data-testid="submit-button">저장</button>
-        <button data-testid="cancel-button">삭제</button>
+        {isEditing && index === pickedIndex ? (
+          <>
+            <input
+              data-testid="modify-input"
+              value={editValue || ''}
+              onChange={(e) => onChangeEdit(e)}
+              type="text"
+            />
+            <button
+              data-testid="submit-button"
+              onClick={() => {
+                onSaveEdit(todo, editValue);
+              }}
+            >
+              제출
+            </button>
+            <button
+              data-testid="cancel-button"
+              onClick={() => {
+                onCancelEdit();
+              }}
+            >
+              취소
+            </button>
+          </>
+        ) : (
+          <>
+            <input disabled value={todo.todo || ''} type="text" />
+            <button
+              onClick={() => {
+                setEditing(true);
+                setPickedIndex(index);
+              }}
+              data-testid="modify-button"
+            >
+              수정
+            </button>
+            <button
+              data-testid="delete-button"
+              onClick={() => {
+                onRemove(todo.id);
+              }}
+            >
+              삭제
+            </button>
+          </>
+        )}
+
         {/* <ListStyle>
         <label>
           <CheckBox
@@ -135,7 +181,8 @@ export const TodoItem = React.memo(({ todo }) => {
           )}
         </label>
       </ListStyle> */}
-      </label>
-    </ListStyle>
-  );
-});
+        {/* </label> */}
+      </ListStyle>
+    );
+  }
+);
