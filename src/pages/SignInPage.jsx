@@ -70,7 +70,11 @@ export function SignInPage() {
         value={passwordInput.value}
         {...passwordInput}
       />
-      <LoginButton type="submit" disabled={!isValid}>
+      <LoginButton
+        data-testid="signin-button"
+        type="submit"
+        disabled={!isValid}
+      >
         제출
       </LoginButton>
     </form>

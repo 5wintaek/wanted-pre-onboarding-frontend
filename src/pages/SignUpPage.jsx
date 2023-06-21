@@ -44,16 +44,6 @@ export function SignUpPage() {
     },
   });
 
-  // const getAuth = async () => {
-  //   try {
-  //     const response = await api.get('/auth/signup');
-  //     const authData = response.authData;
-  //     console.log(authData);
-  //   } catch (error) {
-  //     console.log(console.error());
-  //   }
-  // };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -91,7 +81,7 @@ export function SignUpPage() {
       <h2>🏠 회원가입 페이지</h2>
       <label htmlFor="eamil">Email : </label>
       <FormInput
-        data-testid="password-input"
+        data-testid="email-input"
         name="eamil"
         type="email"
         onChange={handleChnageInputEmail}
@@ -103,7 +93,11 @@ export function SignUpPage() {
         type="password"
         onChange={handleChnageInputPassWord}
       />
-      <LoginButton type="submit" disabled={!validEmail || !validPassword}>
+      <LoginButton
+        data-testid="signin-button"
+        type="submit"
+        disabled={!validEmail || !validPassword}
+      >
         회원가입
       </LoginButton>
     </form>

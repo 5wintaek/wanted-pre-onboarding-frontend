@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom/client';
 import App from '@/apps/App';
-import { SignInPage, SignUpPage, NotFoundPage, Todo } from '@/pages';
+import { SignInPage, SignUpPage, NotFoundPage, Todo, MainPage } from '@/pages';
 import {
   RouterProvider,
   createBrowserRouter,
@@ -16,6 +16,10 @@ const router = createBrowserRouter([
     element: <App />,
     errorElement: <NotFoundPage />,
     children: [
+      {
+        index: true,
+        element: <MainPage />,
+      },
       {
         path: 'signup',
         element: token ? <Navigate to="/todo" /> : <SignUpPage />,
