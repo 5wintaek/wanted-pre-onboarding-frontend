@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { DEV_ADDRESS } from '@/api/api';
 import { useNavigate } from 'react-router-dom';
 import { FormInput, LoginButton } from '@/components';
+import { PROD_ADDRESS } from '@/api/api';
 
 export function SignUpPage() {
   const [isRegistered, setIsRegistered] = useState(false);
@@ -36,7 +37,7 @@ export function SignUpPage() {
     }
   }, [navigate]);
 
-  const url = 'http://localhost:8000/';
+  const url = { PROD_ADDRESS };
   const api = axios.create({
     baseURL: url,
     headers: {

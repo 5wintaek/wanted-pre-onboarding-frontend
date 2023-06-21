@@ -1,9 +1,10 @@
 import { TodoItem, TodoCreate } from '@/components';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { PROD_ADDRESS } from '@/api/api';
 
 const token = localStorage.getItem('token');
-const url = 'http://localhost:8000/';
+const url = { PROD_ADDRESS };
 const api = axios.create({
   baseURL: url,
   headers: {

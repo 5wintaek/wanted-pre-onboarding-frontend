@@ -3,8 +3,9 @@ import { FormInput, LoginButton } from '@/components';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { PROD_ADDRESS } from '@/api/api';
 
-const url = 'http://localhost:8000/';
+const url = [PROD_ADDRESS];
 const api = axios.create({
   baseURL: url,
   Headers: {
