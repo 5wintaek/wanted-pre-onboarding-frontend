@@ -1,4 +1,3 @@
-import { useTodoState } from '@/context';
 import { TodoItem, TodoCreate } from '@/components';
 import { useEffect, useState } from 'react';
 import axios from 'axios';

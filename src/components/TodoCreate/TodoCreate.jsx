@@ -1,23 +1,8 @@
-import { useTodoDispatch, useTodoNextId } from '@/context';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
 
 export function TodoCreate({ createTodo }) {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState('');
-
-  // const dispatch = useTodoDispatch();
-  // const nextId = useTodoNextId();
-
-  const token = localStorage.getItem('token');
-  const url = 'http://localhost:8000/';
-  const api = axios.create({
-    baseURL: url,
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-  });
 
   const onToggle = () => setOpen(!open);
   const onChange = (e) => setValue(e.target.value);

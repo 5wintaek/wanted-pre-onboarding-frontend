@@ -78,7 +78,7 @@ export function SignUpPage() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>🏠 회원가입 페이지</h2>
+      <h2>📌 회원가입 페이지</h2>
       <label htmlFor="eamil">Email : </label>
       <FormInput
         data-testid="email-input"
@@ -94,7 +94,7 @@ export function SignUpPage() {
         onChange={handleChnageInputPassWord}
       />
       <LoginButton
-        data-testid="signin-button"
+        data-testid="signup-button"
         type="submit"
         disabled={!validEmail || !validPassword}
       >
