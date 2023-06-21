@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { DEV_ADDRESS } from '@/api/api';
 import { useNavigate } from 'react-router-dom';
 import { FormInput, LoginButton } from '@/components';
 import { PROD_ADDRESS } from '@/api/api';
@@ -52,7 +51,7 @@ export function SignUpPage() {
       alert('이메일 혹은 비밀번호를 올바르게 입력해주세요');
       return;
     }
-    console.log(DEV_ADDRESS);
+    console.log(PROD_ADDRESS);
     try {
       const response = await api.post('/auth/signup', {
         email: email,
