@@ -60,7 +60,7 @@ export function SignUpPage() {
       console.log(response);
       setIsRegistered(() => true);
     } catch (error) {
-      alert(error.response.data.message);
+      console.log(console.error());
     }
   };
 
