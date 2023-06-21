@@ -4,7 +4,7 @@ import axios from 'axios';
 import { PROD_ADDRESS } from '@/api/api';
 
 const token = localStorage.getItem('token');
-const url = { PROD_ADDRESS };
+const url = PROD_ADDRESS;
 const api = axios.create({
   baseURL: url,
   headers: {

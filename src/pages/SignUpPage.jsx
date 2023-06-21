@@ -36,7 +36,7 @@ export function SignUpPage() {
     }
   }, [navigate]);
 
-  const url = { PROD_ADDRESS };
+  const url = PROD_ADDRESS;
   const api = axios.create({
     baseURL: url,
     headers: {

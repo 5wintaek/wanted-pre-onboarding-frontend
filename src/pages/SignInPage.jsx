@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { PROD_ADDRESS } from '@/api/api';
 
-const url = [PROD_ADDRESS];
+const url = PROD_ADDRESS;
 const api = axios.create({
   baseURL: url,
   Headers: {
