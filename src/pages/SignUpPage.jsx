@@ -59,6 +59,7 @@ export function SignUpPage() {
       });
       console.log(response);
       setIsRegistered(() => true);
+      navigate('/signin');
     } catch (error) {
       console.log(console.error());
     }
