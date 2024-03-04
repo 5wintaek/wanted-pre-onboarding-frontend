@@ -11,8 +11,8 @@ const LinkStyle = styled(Link)`
 export function MainPage() {
   return (
     <>
-      <LinkStyle to="/signin">🔑 로그인</LinkStyle>
-      <LinkStyle to="/signup">📌 회원가입</LinkStyle>
+      <LinkStyle to="/signin">🔑 SignIn</LinkStyle>
+      <LinkStyle to="/signup">📌 SignUp</LinkStyle>
     </>
   );
 }

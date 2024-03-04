@@ -9,7 +9,7 @@ const LinkStyle = styled(Link)`
 export function Header() {
   return (
     <h1>
-      <LinkStyle to="/">🏠 원티드 프리온보딩</LinkStyle>
+      <LinkStyle to="/"> Todo List </LinkStyle>
     </h1>
   );
 }
